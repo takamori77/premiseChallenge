@@ -1,0 +1,18 @@
+{
+  "name": "phu-duty-roster",
+  "description": "PHU Duty Roster Example",
+  "main": "server.js",
+  "authors": [
+    "Gabriel Sterling"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PHU Duty Calendar</title>
+  <link href="/assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/assets/lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/assets/lib/datetimepicker/jquery.datetimepicker.css" />
+</head>
+
+<body ng-app="dutyApp" ng-controller="UserController as userCtrl">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">PHU - Duty Calendar</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/calendar">Calendar</a></li>
+        <li><a href="/analyze">Analysis</a></li>
+        <li><a href="/login" ng-hide="userCtrl.user.email">Login</a></li>
+        <li><a href="/logout" ng-show="userCtrl.user.email">Logout: {{userCtrl.user.email}}</a></li>
+      </ul>
+    </div>
+
+  </nav>
+  <div class="jumbotron">
+    <h3>Premise Health University - Duty Calendar</h3>
+    <div class="sub-title">Keeping your Duty Legal</div>
+  </div>
+
+  <p>
+    Previous Shifts:
+    <div ng-repeat="shift in userCtrl.user.timeSpans | orderBy:shift[0]">
+      {{shift[0]}} to {{shift[1]}}
+    </div>
+  </p>
+  <form name="shiftForm" ng-submit="userCtrl.addShift(newShift)">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="shift-start">Shift Start</label>
+        <input ng-model="userCtrl.newShift.start" id="datetimepicker1" type="text">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="shift-stop">Shift End</label>
+        <input ng-model="userCtrl.newShift.stop" id="datetimepicker2" type="text">
+        </textarea>
+      </div>
+    </div>
+    <input type="submit" value="Add Shift">
+  </form>
+
+</body>
+<footer>
+  Created March 25-27, 2016 by Gabriel Sterling for <a href="http://www.premisehealth.com/">Premise Health</a>
+  <script src="/assets/lib/jquery/dist/jquery.min.js"></script>
+  <script src="/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/assets/lib/angular/angular.min.js"></script>
+  <script src="/assets/lib/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+</footer>
+
+</html>

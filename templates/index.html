@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PHU Duty Calendar</title>
+	<link href="/assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/assets/lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+</head>
+
+<body ng-app="dutyApp" ng-controller="UserController as userCtrl">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">PHU - Duty Calendar</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="/calendar">Calendar</a></li>
+				<li><a href="/analyze">Analysis</a></li>
+				<li><a href="/login" ng-hide="userCtrl.user.email">Login</a></li>
+				<li><a href="/logout" ng-show="userCtrl.user.email">Logout: {{userCtrl.user.email}}</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="jumbotron">
+		<h3>Premise Health University - Duty Calendar</h3>
+		<div class="sub-title">Keeping your Duty Legal</div>
+	</div>
+
+	<blockquote>
+		<p>For this example, I built a Node.js + hapi.js server. I implemented a
+			basic userstore and persistance with MongoDB. (Using MongoLab in the
+			cloud so it can be accessed from anywhere.) I chose to use hapi.js and
+			Angular.js, despite limited experience with either, to have this
+			challenge double as a learning experience. It was a great deal of fun,
+		  thanks for the opportunity!</p>
+
+		<p>There are some basic pages for user registration, login, etc.</p>
+
+		<p>There is a page that allows the user to see their shifts and add
+			new shifts. There is also an analysis page to show the user their shift
+			violations.</p>
+
+		<p>Angular.js was used for page interactivity and with the 'API' on
+			server to determine user state and to request violations. All
+			violation logic is server side. jQuery was used lightly for the
+			date picker on the calendar page.</p>
+		<p>
+			Technologies Used:
+			<a href="https://nodejs.org/en/">Node.js</a>,
+			<a href="http://hapijs.com/">hapi.js</a>,
+			<a href="https://angularjs.org/">Angular.js</a>,
+			<a href="http://getbootstrap.com/">Bootstrap</a>,
+			<a href="https://www.npmjs.com/package/joi">Joi</a>,
+			<a href="https://www.npmjs.com/package/boom">Boom</a>,
+			<a href="https://www.mongodb.org/">MongoDB</a>,
+			<a href="http://momentjs.com/">Moment.js</a>,
+			<a href="https://mlab.com/">MongoLab</a>,
+			<a href="https://jquery.com/">jQuery</a>,
+			<a href="https://www.npmjs.com/package/bcrypt">bcrypt</a>
+		</p>
+	</blockquote>
+
+	<div>
+		<table style='table-layout:fixed;' width="80%" align="center" ng-init="showDone = true; showTodo = true">
+			<tr>
+				<td>
+					<a href="" ng-show="!showDone" ng-click="showDone=!showDone">+</a>
+					<a href="" ng-show="showDone" ng-click="showDone=!showDone">-</a>
+					<a href="" ng-click="showDone=!showDone">Items Done</a>
+				</td>
+				<td>
+					<a href="" ng-show="!showTodo" ng-click="showTodo=!showTodo">+</a>
+					<a href="" ng-show="showTodo" ng-click="showTodo=!showTodo">-</a>
+					<a href="" ng-click="showTodo=!showTodo">Items Todo</a>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">
+					<ul>
+						<li ng-show="showDone" ng-repeat="(key,value) in userCtrl.done">{{key}}
+							<ul>
+								<li ng-repeat="item in userCtrl.done[key]">{{item}} </li>
+							</ul>
+						</li>
+					</ul>
+				</td>
+				<td valign="top">
+					<ul>
+						<li ng-show="showTodo" ng-repeat="(key,value) in userCtrl.todo">{{key}}
+							<ul>
+								<li ng-repeat="item in userCtrl.todo[key]">{{item}} </li>
+							</ul>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+<footer>
+	Created March 25-27, 2016 by Gabriel Sterling for <a href="http://www.premisehealth.com/">Premise Health</a>
+	<script src="/assets/lib/jquery/dist/jquery.min.js"></script>
+	<script src="/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="/assets/lib/angular/angular.min.js"></script>
+	<script src="/assets/lib/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+	<script src="/assets/js/main.js"></script>
+</footer>
+
+</html>
